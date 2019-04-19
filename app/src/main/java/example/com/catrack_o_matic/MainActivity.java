@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         //set this to the next CA's
         //Always have an array of size 6 so that all slots can be filled to avoid arrayIndexOutOfBounds
 
+
         Button redirect = findViewById(R.id.redirectButton);
         redirect.setOnClickListener(new OnClickListener() {
             public void onClick(View arg) {
