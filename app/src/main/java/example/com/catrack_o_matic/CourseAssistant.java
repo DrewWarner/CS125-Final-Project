@@ -2,18 +2,16 @@ package example.com.catrack_o_matic;
 
 public class CourseAssistant implements Comparable {
     private String name;
-    private String netID;
+    private String email;
     private String imageURL;
     private int shiftStart;
 
 
-    CourseAssistant(String setNetID) {
-        netID = setNetID;
-    }
-
-    CourseAssistant(String setName, String setNetID) {
+    CourseAssistant(String setName, String setEmail, String setImageURL, int setShiftStart) {
         name = setName;
-        netID = setNetID;
+        email = setEmail;
+        imageURL = setImageURL;
+        shiftStart = setShiftStart;
     }
 
     public String getName() {
@@ -21,10 +19,16 @@ public class CourseAssistant implements Comparable {
     }
 
     public String getNetID() {
-        return netID;
+        return email;
     }
 
-    public String getImageURL() { return imageURL; }
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public int getShiftStart() {
+        return shiftStart;
+    }
 
     public int compareTo(Object other) {
         if (!(other instanceof CourseAssistant)) {
