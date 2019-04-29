@@ -18,7 +18,10 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         this.bmImage = bmImage;
     }
 
-    protected Bitmap doInBackground(String... urls) {
+    // write an AsyncTask class to download the image + run it in the background
+
+
+    protected Bitmap doInBackground(String... urls) { // String urls, not URL urls
         String urldisplay = urls[0];
         Bitmap mIcon11 = null;
         try {

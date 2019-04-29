@@ -1,5 +1,6 @@
 package example.com.catrack_o_matic;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -37,12 +39,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(viewIntent);
             }
         });
+        new ApiRequest().execute("http://cs125.cs.illinois.edu/info/people/");
+    }
 
+    void updatePhotos(Document doc) {
         List<CourseAssistant> courseAssistants = new ArrayList<>();
+        if (doc == null) {
+            return;
+        }
 
-        //Parse CS125 forum html and get photos and names of CAs and TAs
         try {
-            Document doc = Jsoup.connect("https://cs125.cs.illinois.edu/info/people/#cas").get();
             Elements assistantElements = doc.body().getElementById("content").getElementsByClass("row flex-x1-nowrap").get(0)
                     .getElementsByClass("col-12 col-md-9 col-x1-7 py-3").get(0)
                     .getElementsByClass("mt-3").get(0)
@@ -70,24 +76,40 @@ public class MainActivity extends AppCompatActivity {
                 tmpShiftStart = random.nextInt((20 - 8) + 1) + 8;
 
                 courseAssistants.add(new CourseAssistant(tmpName, tmpEmail, tmpImageURL, tmpShiftStart));
-                break;
             }
         } catch (Exception e) {
-            Log.e("Error Parsing", e.getMessage());
+            Log.e("Error Parsing", e.toString());
             e.printStackTrace();
         }
 
-
         //for each ca and ta make a new image view and add it to the correct scroll view
-        //Collections.sort(courseAssistants);
+        Collections.sort(courseAssistants);
 
-        HorizontalScrollView caView = findViewById(R.id.CAScrollView);
+        LinearLayout caView = findViewById(R.id.caLayout);
 
         for (CourseAssistant ca : courseAssistants) {
             ImageView tmp = new ImageView(this);
             new DownloadImageTask(tmp).execute(ca.getImageURL());
+            Log.d("runs loop", "runs loop");
             caView.addView(tmp);
-            break;
+        }
+    }
+
+    public class ApiRequest extends AsyncTask<String, Void, Document> {
+        protected Document doInBackground(String... urls) {
+            String url = urls[0];
+            Document toReturn = null;
+            try {
+                toReturn = Jsoup.connect(url).get();
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+            }
+            return toReturn;
+        }
+
+        protected void onPostExecute(Document result) {
+            updatePhotos(result);
         }
     }
 }
+
