@@ -49,11 +49,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
-            Elements assistantElements = doc.body().getElementById("content").getElementsByClass("row flex-x1-nowrap").get(0)
-                    .getElementsByClass("col-12 col-md-9 col-x1-7 py-3").get(0)
-                    .getElementsByClass("mt-3").get(0)
-                    .getElementsByClass("row").get(0)
-                    .getElementsByClass("col-12 col-sm-6 col-lg-4 mt-2");
+            Elements assistantElements = doc.body().getElementById("content").getElementsByClass("col-12 col-sm-6 col-lg-4 mt-2");
+            Log.d("got here" + assistantElements.size(), "got here" + assistantElements.size());
 
             for (Element ca : assistantElements) {
                 String tmpName;
@@ -61,21 +58,12 @@ public class MainActivity extends AppCompatActivity {
                 String tmpImageURL;
                 int tmpShiftStart;
 
-                tmpName = ca.getElementsByClass("card pt-2 pl-2 pr-2").get(0)
-                        .getElementsByClass("card-body").get(0)
-                        .getElementsByClass("person card-title text-center").get(0).text();
-                tmpImageURL = ca.getElementsByClass("card pt-2 pl-2 pr-2").get(0)
-                        .getElementsByClass("card-img-top ie-img-fix").get(0)
-                        .attr("src");
-                tmpEmail = ca.getElementsByClass("card pt-2 pl-2 pr-2").get(0)
-                        .getElementsByClass("card-body").get(0)
-                        .getElementsByClass("email text-center").get(0)
-                        .attr("href");
-
+                tmpImageURL = ca.getElementsByTag("img").attr("src");
+                Log.d("got there", "got there");
                 Random random = new Random();
                 tmpShiftStart = random.nextInt((20 - 8) + 1) + 8;
 
-                courseAssistants.add(new CourseAssistant(tmpName, tmpEmail, tmpImageURL, tmpShiftStart));
+                courseAssistants.add(new CourseAssistant("john", "john", tmpImageURL, tmpShiftStart));
             }
         } catch (Exception e) {
             Log.e("Error Parsing", e.toString());

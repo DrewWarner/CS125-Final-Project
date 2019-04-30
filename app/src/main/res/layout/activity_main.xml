@@ -7,100 +7,23 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/topLeftText"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Current Date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/topRightText"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Current Time Period"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/caOnDutyText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="CA's On Duty:"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <TableLayout
-        android:id="@+id/caOnDutyTable"
-        android:layout_width="395dp"
-        android:layout_height="149dp"
+        android:layout_width="271dp"
+        android:layout_height="43dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:gravity="center"
+        android:text="Meet the Course Staff!"
+        android:textAllCaps="true"
+        android:textSize="30sp"
+        android:typeface="sans"
+        app:fontFamily="sans-serif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caOnDutyText">
-
-        <TableRow
-            android:id="@+id/ImageRow"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
-
-            <ImageView
-                android:id="@+id/caOnDutyImage1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars[0]" />
-
-            <ImageView
-                android:id="@+id/caOnDutyImage2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars[1]" />
-
-            <ImageView
-                android:id="@+id/caOnDutyImage3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars[2]" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/TextRow"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/caOnDutyText1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/caOnDutyText2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/caOnDutyText3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-        </TableRow>
-
-    </TableLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/ButtonPrompt"
@@ -110,8 +33,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Don't see a CA or want to leave feedback?"
+        android:layout_marginBottom="24dp"
+        android:text="Want to leave feedback?"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/redirectButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +48,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="76dp"
         android:text="Click Here"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -135,15 +58,16 @@
     <HorizontalScrollView
         android:id="@+id/CAScrollView"
         android:layout_width="395dp"
-        android:layout_height="334dp"
+        android:layout_height="207dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caOnDutyTable">
+        app:layout_constraintTop_toBottomOf="@+id/caOnDutyText">
 
         <LinearLayout
             android:id="@+id/caLayout"
